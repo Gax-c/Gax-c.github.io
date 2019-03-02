@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="题目描述：给定nn个数，要求构造一个nn的矩阵，使得这个矩阵是个回文矩阵。 输入格式：第一行一个数n。第二行n*n个数表示给定的数。 输出格式：输出一个回文矩阵，输出”YES”，并输出一种即可。若无法构成回文矩阵，则输出”NO”。 输入样例：41 8 8 1 2 2 2 2 2 2 2 2 1 8 8 1">
+<meta name="description" content="题目描述：给定$n \times n$个数，要求构造一个$n \times n$的矩阵，使得这个矩阵是个回文矩阵。 输入格式：第一行一个数n。第二行$n \times n$个数表示给定的数。 输出格式：输出一个回文矩阵，输出”YES”，并输出一种即可。若无法构成回文矩阵，则输出”NO”。 输入样例：41 8 8 1 2 2 2 2 2 2 2 2 1 8 8 1">
 <meta name="keywords" content="思维,构造">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[CF1118C]Palindromic Matrix">
 <meta property="og:url" content="https://gax-c.github.io/2019/03/02/[CF1118C]Palindromic Matrix/index.html">
 <meta property="og:site_name" content="Gax&#39;s blog">
-<meta property="og:description" content="题目描述：给定nn个数，要求构造一个nn的矩阵，使得这个矩阵是个回文矩阵。 输入格式：第一行一个数n。第二行n*n个数表示给定的数。 输出格式：输出一个回文矩阵，输出”YES”，并输出一种即可。若无法构成回文矩阵，则输出”NO”。 输入样例：41 8 8 1 2 2 2 2 2 2 2 2 1 8 8 1">
+<meta property="og:description" content="题目描述：给定$n \times n$个数，要求构造一个$n \times n$的矩阵，使得这个矩阵是个回文矩阵。 输入格式：第一行一个数n。第二行$n \times n$个数表示给定的数。 输出格式：输出一个回文矩阵，输出”YES”，并输出一种即可。若无法构成回文矩阵，则输出”NO”。 输入样例：41 8 8 1 2 2 2 2 2 2 2 2 1 8 8 1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-02T13:44:28.386Z">
+<meta property="og:updated_time" content="2019-03-02T13:49:57.120Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[CF1118C]Palindromic Matrix">
-<meta name="twitter:description" content="题目描述：给定nn个数，要求构造一个nn的矩阵，使得这个矩阵是个回文矩阵。 输入格式：第一行一个数n。第二行n*n个数表示给定的数。 输出格式：输出一个回文矩阵，输出”YES”，并输出一种即可。若无法构成回文矩阵，则输出”NO”。 输入样例：41 8 8 1 2 2 2 2 2 2 2 2 1 8 8 1">
+<meta name="twitter:description" content="题目描述：给定$n \times n$个数，要求构造一个$n \times n$的矩阵，使得这个矩阵是个回文矩阵。 输入格式：第一行一个数n。第二行$n \times n$个数表示给定的数。 输出格式：输出一个回文矩阵，输出”YES”，并输出一种即可。若无法构成回文矩阵，则输出”NO”。 输入样例：41 8 8 1 2 2 2 2 2 2 2 2 1 8 8 1">
 
 
 
@@ -384,8 +384,8 @@
       
 
       
-        <p><strong>题目描述</strong>：给定n<em>n个数，要求构造一个n</em>n的矩阵，使得这个矩阵是个回文矩阵。</p>
-<p><strong>输入格式</strong>：第一行一个数n。<br>第二行n*n个数表示给定的数。</p>
+        <p><strong>题目描述</strong>：给定$n \times n$个数，要求构造一个$n \times n$的矩阵，使得这个矩阵是个回文矩阵。</p>
+<p><strong>输入格式</strong>：第一行一个数n。<br>第二行$n \times n$个数表示给定的数。</p>
 <p><strong>输出格式</strong>：输出一个回文矩阵，输出”YES”，并输出一种即可。<br>若无法构成回文矩阵，则输出”NO”。</p>
 <p><strong>输入样例</strong>：<br>4<br>1 8 8 1 2 2 2 2 2 2 2 2 1 8 8 1<br><a id="more"></a><br><strong>输出样例</strong>：<br>YES<br>1 2 2 1<br>8 2 2 8<br>8 2 2 8<br>1 2 2 1</p>
 <p><strong>解析</strong>：题目不难？<br>&emsp;&emsp;&emsp;看了看题面，发现若要成为回文的，那么每一个位置填数的个数只能为1或2或4。<br>&emsp;&emsp;&emsp;那么找出每个所需个数相同的位置一起处理，每次看能否填上即可。<br>&emsp;&emsp;&emsp;似乎没有什么好讲的，看到代码就懂了。</p>
@@ -409,7 +409,7 @@
   <p><span>本文标题:</span><a href="/2019/03/02/[CF1118C]Palindromic Matrix/">[CF1118C]Palindromic Matrix</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Gax 的个人博客">Gax</a></p>
   <p><span>发布时间:</span>2019年03月02日 - 21:38</p>
-  <p><span>最后更新:</span>2019年03月02日 - 21:44</p>
+  <p><span>最后更新:</span>2019年03月02日 - 21:49</p>
   <p><span>原始链接:</span><a href="/2019/03/02/[CF1118C]Palindromic Matrix/" title="[CF1118C]Palindromic Matrix">https://gax-c.github.io/2019/03/02/[CF1118C]Palindromic Matrix/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://gax-c.github.io/2019/03/02/[CF1118C]Palindromic Matrix/" aria-label="复制成功！"></i></span>
   </p>
