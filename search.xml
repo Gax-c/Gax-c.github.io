@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[bzoj1050]旅行comf]]></title>
+    <url>%2F2019%2F03%2F03%2F%5Bbzoj1050%5D%E6%97%85%E8%A1%8Ccomf%2F</url>
+    <content type="text"><![CDATA[题目描述：给你一个无向图，N(N&lt;=500)个顶点, M(M&lt;=5000)条边，每条边有一个权值Vi(Vi&lt;30000)。给你两个顶点S和T，求一条路径，使得路径上最大边和最小边的比值最小。如果S和T之间没有路径，输出”IMPOSSIBLE”，否则输出这个比值，如果需要，表示成一个既约分数。 备注： 两个顶点之间可能有多条路径。 输入描述：第一行包含两个正整数，N和M。下来的M行每行包含三个正整数：x，y和v。表示景点x到景点y之间有一条双向公路，车辆必须以速度v在该公路上行驶。最后一行包含两个正整数s，t，表示想知道从景点s到景点t最大最小速度比最小的路径。s和t不可能相同。1]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>bzoj</tag>
+        <tag>最小生成树</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[CF1131D]Gourmet choice]]></title>
     <url>%2F2019%2F03%2F03%2F%5BCF1131D%5DGourmet%20choice%2F</url>
     <content type="text"><![CDATA[题目描述：一共有n+m个数，给定这n+m个数的大小关系，求满足条件的每个数的最小值。 输入格式：第一行n和m，表示两组的数的个数。第2~ n+1行，每行m个整数，表示第一组第i个数与第二组第j个数的大小关系。 输出格式：第一行，若无法满足，输出”No”，否则输出”Yes”。第二行，输出第一组的数。第三行，输出第二组的数。 输入样例：3 3&gt;&gt;&gt;&lt;&lt;&lt;&gt;&gt;&gt; 输出样例：Yes3 1 32 2 2 解析：看到题目有点懵，但仔细看看，好像就是个差分约束系统。&emsp;&emsp;&emsp;但好像会超时。算了，反正不会其他的做法，就死马当活马医吧。&emsp;&emsp;&emsp;打完一交，果然超时了。&emsp;&emsp;&emsp;想了一会后似乎又有了些头绪。&emsp;&emsp;&emsp;首先这题并不像其他的差分约束系统题一样有着过分的约束。&emsp;&emsp;&emsp;唯一的约束只有三个，大于、小于和等于。&emsp;&emsp;&emsp;那么如果将小的数向大的数连一条边，便会得到一个DAG。&emsp;&emsp;&emsp;而对于所有相等的点，所在一起即可。&emsp;&emsp;&emsp;那么怎么进行缩店呢，用并查集即可。&emsp;&emsp;&emsp;最后在DAG上跑一遍DP即可。&emsp;&emsp;&emsp;注意DAG上可能会有重边，这样会导致度数错误，要删去重边。 代码如下：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061#include&lt;cstdio&gt;#include&lt;queue&gt;#include&lt;algorithm&gt;#include&lt;vector&gt;using namespace std;const int maxn = 2005;int n, m, fa[maxn], du[maxn], vis[maxn], dp[maxn];char s[maxn][maxn];queue &lt;int&gt; que;vector &lt;int&gt; ve[maxn];int getf(int x) &#123; if (x == fa[x]) return fa[x]; else return fa[x] = getf(fa[x]);&#125;int bfs(void) &#123; //DP int tot = 0; for (int i = 1; i &lt;= n + m; ++ i) if (!du[i]) que.push(i), tot ++; while (!que.empty()) &#123; int u = que.front(); que.pop(); for (int i = 0; i &lt; ve[u].size(); ++ i) &#123; int v = ve[u][i]; v = getf(v); du[v] --; dp[v] = max(dp[v], dp[u] + 1); if (!du[v]) &#123; que.push(v); tot ++; &#125; &#125; &#125; if (tot &lt; n + m) return 0; return 1;&#125;int main() &#123; scanf("%d %d", &amp;n, &amp;m); for (int i = 1; i &lt;= n; ++ i) scanf("%s", s[i] + 1); for (int i = 1; i &lt;= n + m; ++ i) fa[i] = i; for (int i = 1; i &lt;= n; ++ i) //预先将等于的缩在一起 for (int j = 1; j &lt;= m; ++ j) if (s[i][j] == '=') fa[getf(i)] = getf(n + j); for (int i = 1; i &lt;= n; ++ i) for (int j = 1; j &lt;= m; ++ j) &#123; if (s[i][j] == '=') continue; if (getf(i) == getf(n + j)) return printf("No"), 0; //违反条件直接退出 if (s[i][j] == '&lt;') ve[getf(i)].push_back(getf(n + j)); else ve[getf(n + j)].push_back(getf(i)); &#125; for (int i = 1; i &lt;= n + m; ++ i) sort(ve[i].begin(), ve[i].end()); //删去重边 for (int i = 1; i &lt;= n + m; ++ i) ve[i].erase(unique(ve[i].begin(), ve[i].end()), ve[i].end()); for (int i = 1; i &lt;= n + m; ++ i) //统计度数 for (int j = 0; j &lt; ve[i].size(); ++ j) du[ve[i][j]] ++; if (!bfs()) return printf("No"), 0; for (int i = 1; i &lt;= n + m; ++ i) dp[getf(i)] = max(dp[getf(i)], dp[i]); puts("Yes"); for (int i = 1; i &lt;= n; ++ i) printf("%d ", dp[getf(i)] + 1); puts(""); for (int i = n + 1; i &lt;= n + m; ++ i) printf("%d ", dp[getf(i)] + 1); return 0;&#125;]]></content>
@@ -22,8 +34,8 @@
       </categories>
       <tags>
         <tag>思维</tag>
-        <tag>CF</tag>
         <tag>构造</tag>
+        <tag>CF</tag>
       </tags>
   </entry>
   <entry>
