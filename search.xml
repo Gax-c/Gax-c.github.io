@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[bzoj1432]Function]]></title>
+    <url>%2F2019%2F04%2F05%2F%5Bbzoj1432%5DFunction%2F</url>
+    <content type="text"><![CDATA[原题链接 题目描述:有n个连续函数fi(x)，其中1≤i≤n。对于任何两个函数fi(x)和fj(x),(i!=j)，恰好存在一个x使得fi(x)=fj(x)，并且存在无穷多的x使得fi(x) &lt; fj(x)。对于任何i;j;k，满足1 ≤i&lt; j&lt; k≤n，则不存在x使得fi(x)=fj(x)=fk(x)。如上左图就是3个满足条件的函数，最左边从下往上依次为f1;f2;f3。右图中红色部分是这整个函数图像的最低层，我们称它为第一层。同理绿色部分称为第二层，蓝色部分称为第三层。注意到，右图中第一层左边一段属于f1，中间属于f2，最后属于f3。而第二层左边属于f2，接下来一段属于f1，再接下来一段属于f3，最后属于f2。因此，我们称第一层分为了三段，第二层分为了四段。同理第三层只分为了两段。求满足前面条件的n个函数，第k层最少。 输入描述：一行两个整数n; k。1 ≤ k ≤ n ≤ 100。 输出描述：一行一个整数，表示n 个函数第k 层最少能由多少段组成。 输入样例：1 1 输出样例：1 解析：很显然是道数学题。&emsp;&emsp;&emsp;本题代码很简单，但对思维的要求比较高。&emsp;&emsp;&emsp;看了看网上的题解，都没怎么说清楚。&emsp;&emsp;&emsp;其实我自己也说不清楚…感性理解一下吧。&emsp;&emsp;&emsp;首先画出来的图是可以翻转的，若设f[k]表示n个函数第k层的最少段数，则f[k]=f[n-k+1]。&emsp;&emsp;&emsp;之后我就不会解释了，画画图找找规律就做好了。&emsp;&emsp;&emsp;注意对于n=1的情况要特殊判断。 代码如下:123456789101112#include&lt;cstdio&gt;#include&lt;algorithm&gt;using namespace std;int n, k;int main() &#123; scanf("%d %d", &amp;n, &amp;k); if (n == 1) puts("1"); else printf("%d", min(k, n - k + 1) &lt;&lt; 1); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>bzoj</tag>
+        <tag>数学</tag>
+        <tag>规律</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[bzoj1042]硬币购物]]></title>
     <url>%2F2019%2F04%2F05%2F%5Bbzoj1042%5D%E7%A1%AC%E5%B8%81%E8%B4%AD%E7%89%A9%2F</url>
     <content type="text"><![CDATA[原题链接 题目描述：硬币购物一共有4种硬币。面值分别为c1,c2,c3,c4。某人去商店买东西，去了tot次。每次带di枚ci硬币，买si的价值的东西。请问每次有多少种付款方法。 输入格式：第一行 c1,c2,c3,c4,tot 下面tot行 d1,d2,d3,d4,s,其中di,s&lt;=100000,tot&lt;=1000。 输出格式：每次的方法数。输入样例：1 2 5 10 23 2 3 1 101000 2 2 2 900 输出格式：427 解析：比较基础的容斥题。&emsp;&emsp;&emsp;看到题目后就想到了背包，但数据范围不允许。&emsp;&emsp;&emsp;那么令dp[i]表示不考虑数量限制的情况下所能取的方案数。&emsp;&emsp;&emsp;这就是个完全背包，预处理出$dp_{1…100000}$。&emsp;&emsp;&emsp;那么对于每次询问的s，答案就是dp[s]-有一个超过限制的+有两个超过限制的-有三个超过限制的+有四个超过限制的。&emsp;&emsp;&emsp;可如何计算每一种超过限制的方案数呢？&emsp;&emsp;&emsp;以超过第1种的限制为例。若第一种取的个数超过d[1]，即至少为d[1]+1时，就超过了限制。&emsp;&emsp;&emsp;所以第一种超过限制的方案数即为dp[s-(d[1]+1)*c[1]]。&emsp;&emsp;&emsp;由于只有16种情况，所以计算时直接枚举即可。 代码如下：12345678910111213141516171819202122232425262728293031323334353637#include&lt;cstdio&gt;#define ll long longusing namespace std;int c[10], d[10], q, s;ll dp[100005], ans; int read(void) &#123; char c; while (c = getchar(), c &lt; '0' || c &gt;'9'); int x = c - '0'; while (c = getchar(), c &gt;= '0' &amp;&amp; c &lt;= '9') x = x * 10 + c - '0'; return x;&#125;ll solve(int x) &#123; int sign = 1; ll tot = s; for (int i = 0; i &lt; 4; ++ i) //确定符号，即是+还是- if ((1 &lt;&lt; i) &amp; x) sign = -sign; for (int i = 0; i &lt; 4; ++ i) if ((1 &lt;&lt; i) &amp; x) tot -= (d[i + 1] + 1) * c[i + 1]; if (tot &lt; 0) return 0; //若小于0，即不存在，直接返回0 return dp[tot] * sign;&#125;int main() &#123; for (int i = 1; i &lt;= 4; ++ i) c[i] = read(); dp[0] = 1; for (int i = 1; i &lt;= 4; ++ i) //完全背包 for (int j = c[i]; j &lt;= 100000; ++ j) dp[j] += dp[j - c[i]]; q = read(); while (q --) &#123; for (int i = 1; i &lt;= 4; ++ i) d[i] = read(); s = read(); ans = 0; for (int i = 0; i &lt; 16; ++ i) ans += solve(i); printf("%lld\n", ans); &#125; return 0;&#125;]]></content>
@@ -118,8 +131,8 @@
       </categories>
       <tags>
         <tag>思维</tag>
-        <tag>hdu</tag>
         <tag>数学</tag>
+        <tag>hdu</tag>
       </tags>
   </entry>
   <entry>
@@ -131,8 +144,8 @@
       </categories>
       <tags>
         <tag>思维</tag>
-        <tag>two pointers</tag>
         <tag>hdu</tag>
+        <tag>two pointers</tag>
       </tags>
   </entry>
   <entry>
