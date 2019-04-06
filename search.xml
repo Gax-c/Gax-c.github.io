@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[bzoj1054]移动玩具]]></title>
+    <url>%2F2019%2F04%2F06%2F%5Bbzoj1054%5D%E7%A7%BB%E5%8A%A8%E7%8E%A9%E5%85%B7%2F</url>
+    <content type="text"><![CDATA[原题链接 题目描述：在一个4*4的方框内摆放了若干个相同的玩具，某人想将这些玩具重新摆放成为他心中理想的状态，规定移动时只能将玩具向上下左右四个方向移动，并且移动的位置不能有玩具，请你用最少的移动次数将初始的玩具状态移动到某人心中的目标状态。 输入描述：前4行表示玩具的初始状态，每行4个数字1或0，1表示方格中放置了玩具，0表示没有放置玩具。接着是一个空行。接下来4行表示玩具的目标状态，每行4个数字1或0，意义同上。 输出描述：一个整数，所需要的最少移动次数。 输入样例：1111000011100010 1010010110100101 输出样例：4 解析：水题。没想到还有这么裸的暴搜题。&emsp;&emsp;&emsp;不用去想每个点应该怎么走，直接暴力广搜即可。&emsp;&emsp;&emsp;找到答案直接退出。搜索时要判一下重。&emsp;&emsp;&emsp;注意！原状态和目标状态都是1的点也有可能是要移动的。比如下面的例子：12345678911111111111011111111101111111111 &emsp;&emsp;&emsp;在这个例子中，就算两种状态都是1也是要动的。 代码如下：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374#include&lt;cstdio&gt;#include&lt;map&gt;#include&lt;queue&gt;#include&lt;string&gt;#include&lt;iostream&gt;using namespace std;const int dir[4][2] = &#123;&#123;1, 0&#125;, &#123;0, 1&#125;, &#123;-1, 0&#125;, &#123;0, -1&#125;&#125;;int a[10][10], b[10][10];string s;struct node&#123; int mtr[5][5]; int step;&#125;;queue &lt;node&gt; que;map &lt;string, int&gt; vis;int store(node x) &#123; //判重+储存 s.clear(); for (int i = 1; i &lt;= 4; ++ i) for (int j = 1; j &lt;= 4; ++ j) s.push_back(x.mtr[i][j] + '0'); if (vis[s]) return 0; vis[s] = 1; return 1;&#125;int is(node x) &#123; //判断是否达到目标状态 for (int i = 1; i &lt;= 4; ++ i) for (int j = 1; j &lt;= 4; ++ j) if (b[i][j] != x.mtr[i][j]) return 0; return 1;&#125;void bfs(void) &#123; node u; for (int i = 1; i &lt;= 4; ++ i) for (int j = 1; j &lt;= 4; ++ j) u.mtr[i][j] = a[i][j]; u.step = 0; store(u); que.push(u); while (!que.empty()) &#123; u = que.front(); que.pop(); if (is(u)) &#123; //搜到直接退出 printf("%d", u.step); return; &#125; for (int i = 1; i &lt;= 4; ++ i) for (int j = 1; j &lt;= 4; ++ j) &#123; if (u.mtr[i][j] == 0) continue; for (int k = 0; k &lt; 4; ++ k) &#123; int x = i + dir[k][0], y = j + dir[k][1]; if (u.mtr[x][y]) continue; if (x &lt; 1 || y &lt; 1 || x &gt; 4 || y &gt; 4) continue; u.mtr[x][y] = 1; u.mtr[i][j] = 0; u.step ++; if (store(u)) que.push(u); u.mtr[x][y] = 0; u.mtr[i][j] = 1; u.step --; &#125; &#125; &#125;&#125;int main() &#123; for (int i = 1; i &lt;= 4; ++ i) &#123; cin &gt;&gt; s; for (int j = 0; j &lt; 4; ++ j) a[i][j + 1] = s[j] - '0'; &#125; for (int i = 1; i &lt;= 4; ++ i) &#123; cin &gt;&gt; s; for (int j = 0; j &lt; 4; ++ j) b[i][j + 1] = s[j] - '0'; &#125; bfs(); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>bzoj</tag>
+        <tag>广搜</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[bzoj1432]Function]]></title>
     <url>%2F2019%2F04%2F05%2F%5Bbzoj1432%5DFunction%2F</url>
     <content type="text"><![CDATA[原题链接 题目描述:有n个连续函数fi(x)，其中1≤i≤n。对于任何两个函数fi(x)和fj(x),(i!=j)，恰好存在一个x使得fi(x)=fj(x)，并且存在无穷多的x使得fi(x) &lt; fj(x)。对于任何i;j;k，满足1 ≤i&lt; j&lt; k≤n，则不存在x使得fi(x)=fj(x)=fk(x)。如上左图就是3个满足条件的函数，最左边从下往上依次为f1;f2;f3。右图中红色部分是这整个函数图像的最低层，我们称它为第一层。同理绿色部分称为第二层，蓝色部分称为第三层。注意到，右图中第一层左边一段属于f1，中间属于f2，最后属于f3。而第二层左边属于f2，接下来一段属于f1，再接下来一段属于f3，最后属于f2。因此，我们称第一层分为了三段，第二层分为了四段。同理第三层只分为了两段。求满足前面条件的n个函数，第k层最少。 输入描述：一行两个整数n; k。1 ≤ k ≤ n ≤ 100。 输出描述：一行一个整数，表示n 个函数第k 层最少能由多少段组成。 输入样例：1 1 输出样例：1 解析：很显然是道数学题。&emsp;&emsp;&emsp;本题代码很简单，但对思维的要求比较高。&emsp;&emsp;&emsp;看了看网上的题解，都没怎么说清楚。&emsp;&emsp;&emsp;其实我自己也说不清楚…感性理解一下吧。&emsp;&emsp;&emsp;首先画出来的图是可以翻转的，若设f[k]表示n个函数第k层的最少段数，则f[k]=f[n-k+1]。&emsp;&emsp;&emsp;之后我就不会解释了，画画图找找规律就做好了。&emsp;&emsp;&emsp;注意对于n=1的情况要特殊判断。 代码如下:123456789101112#include&lt;cstdio&gt;#include&lt;algorithm&gt;using namespace std;int n, k;int main() &#123; scanf("%d %d", &amp;n, &amp;k); if (n == 1) puts("1"); else printf("%d", min(k, n - k + 1) &lt;&lt; 1); return 0;&#125;]]></content>
@@ -83,9 +95,9 @@
         <category>OI</category>
       </categories>
       <tags>
+        <tag>CF</tag>
         <tag>思维</tag>
         <tag>构造</tag>
-        <tag>CF</tag>
       </tags>
   </entry>
   <entry>
@@ -131,8 +143,8 @@
       </categories>
       <tags>
         <tag>思维</tag>
-        <tag>数学</tag>
         <tag>hdu</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -144,8 +156,8 @@
       </categories>
       <tags>
         <tag>思维</tag>
-        <tag>hdu</tag>
         <tag>two pointers</tag>
+        <tag>hdu</tag>
       </tags>
   </entry>
   <entry>
