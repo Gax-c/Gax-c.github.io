@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="bzoj,凸包,">
 
 
 
@@ -79,16 +79,20 @@
 
 
 
-<meta name="description" content="既然不能改变自己，那就改变世界">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Gax&#39;s blog">
-<meta property="og:url" content="https://gax-c.github.io/tags/splay/index.html">
+<meta name="description" content="原题链接没有bzoj权限的话可以去洛谷 题目描述：信用卡是一个矩形，唯四个角作了圆滑处理，使它们都是与矩形的两边相切的 1/4 圆，如下图所示。现在平面上有一些规格相同的信用卡，试求其凸包的周长。注意凸包未必是多边形，因为它可能包含若干段圆弧。 输入格式：输入的第一行是一个正整数 n，表示信用卡的张数。第二行包含三个实数 a, b, r，分别表示信用卡（圆滑处理前）竖直方向的长度、水平方向的长度">
+<meta name="keywords" content="bzoj,凸包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[bzoj2829]信用卡凸包">
+<meta property="og:url" content="https://gax-c.github.io/2019/04/14/[bzoj2829]信用卡凸包/index.html">
 <meta property="og:site_name" content="Gax&#39;s blog">
-<meta property="og:description" content="既然不能改变自己，那就改变世界">
+<meta property="og:description" content="原题链接没有bzoj权限的话可以去洛谷 题目描述：信用卡是一个矩形，唯四个角作了圆滑处理，使它们都是与矩形的两边相切的 1/4 圆，如下图所示。现在平面上有一些规格相同的信用卡，试求其凸包的周长。注意凸包未必是多边形，因为它可能包含若干段圆弧。 输入格式：输入的第一行是一个正整数 n，表示信用卡的张数。第二行包含三个实数 a, b, r，分别表示信用卡（圆滑处理前）竖直方向的长度、水平方向的长度">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/08/A4q2X6.png">
+<meta property="og:updated_time" content="2019-04-14T03:26:47.765Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Gax&#39;s blog">
-<meta name="twitter:description" content="既然不能改变自己，那就改变世界">
+<meta name="twitter:title" content="[bzoj2829]信用卡凸包">
+<meta name="twitter:description" content="原题链接没有bzoj权限的话可以去洛谷 题目描述：信用卡是一个矩形，唯四个角作了圆滑处理，使它们都是与矩形的两边相切的 1/4 圆，如下图所示。现在平面上有一些规格相同的信用卡，试求其凸包的周长。注意凸包未必是多边形，因为它可能包含若干段圆弧。 输入格式：输入的第一行是一个正整数 n，表示信用卡的张数。第二行包含三个实数 a, b, r，分别表示信用卡（圆滑处理前）竖直方向的长度、水平方向的长度">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/04/08/A4q2X6.png">
 
 
 
@@ -118,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://gax-c.github.io/tags/splay/">
+  <link rel="canonical" href="https://gax-c.github.io/2019/04/14/[bzoj2829]信用卡凸包/">
 
 
 
 
 
-  <title>标签: splay | Gax's blog</title>
+  <title>[bzoj2829]信用卡凸包 | Gax's blog</title>
   
 
 
@@ -143,7 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -279,52 +283,211 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>splay<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gax-c.github.io/2019/04/14/[bzoj2829]信用卡凸包/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gax">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gax's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/02/19/OI生存手册——splay/" itemprop="url">
-              
-                <span itemprop="name">OI生存手册——splay</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">[bzoj2829]信用卡凸包</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-19T11:10:25+08:00" content="2019-02-19">
-          02-19
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-14T11:02:12+08:00">
+                2019-04-14
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OI/" itemprop="url" rel="index">
+                    <span itemprop="name">OI</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p> <a href="https://www.lydsy.com/JudgeOnline/problem.php?id=2829" target="_blank" rel="noopener">原题链接</a><br>没有bzoj权限的话可以去<a href="https://www.luogu.org/problemnew/show/P3829" target="_blank" rel="noopener">洛谷</a></p>
+<p><strong>题目描述</strong>：信用卡是一个矩形，唯四个角作了圆滑处理，使它们都是与矩形的两边相切的 1/4 圆，如下图所示。现在平面上有一些规格相同的信用卡，试求其凸包的周长。注意凸包未必是多边形，因为它可能包含若干段圆弧。<br><img src="https://s2.ax1x.com/2019/04/08/A4q2X6.png" alt></p>
+<p><strong>输入格式</strong>：输入的第一行是一个正整数 n，表示信用卡的张数。第二行包含三个实数 a, b, r，分别表示信用卡（圆滑处理前）竖直方向的长度、水平方向的长度，以及 1/4 圆的半径。<br>之后 n 行，每行包含三个实数 x, y, θ，分别表示一张信用卡中心（即对角线交点）的横、纵坐标，以及绕中心 逆时针旋转的弧度。<br><strong>输出格式</strong>：输出只有一行，包含一个实数，表示凸包的周长，四舍五入精确到小数点后2 位。<br> <a id="more"></a><br><strong>输入样例</strong>：<br>3<br>6.0 6.0 1.0<br>4.0 4.0 0.1745329252<br>0.0 8.0 0.3490658504<br>0.0 0.0 0.5235987756</p>
+<p><strong>输出样例</strong>：<br>41.63</p>
+<p><strong>解析</strong>：乍一眼看上去毫无头绪，圆滑处理什么的根本看不懂。<br>&emsp;&emsp;&emsp;但仔细观察后就会发现，要覆盖所有的信用卡，凸包所选的点肯定在每个信用卡的边缘。<br>&emsp;&emsp;&emsp;对于r=0的情况，很容易发现就是将每张信用卡的四个顶点放入点集中做一次凸包。<br>&emsp;&emsp;&emsp;对于r≠0的情况，就将则将圆滑处理过的信用卡的顶点的圆心放入点集中做凸包。<br>&emsp;&emsp;&emsp;可是这样周长肯定会偏小啊。没关系，最后再将答案加上一个2πr即可。<br>&emsp;&emsp;&emsp;为什么是这样的呢，可以自己手玩一下样例，也可以自己证明一下。</p>
+<p>代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ld long double</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ld pi = <span class="built_in">acos</span>(<span class="number">-1</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">80005</span>;</span><br><span class="line"><span class="keyword">int</span> n, tot, st[maxn], top;</span><br><span class="line">ld l, h, r, ans;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">	ld x, y;</span><br><span class="line">&#125;p[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rotate</span><span class="params">(ld &amp;x, ld &amp;y, ld &amp;sita)</span> </span>&#123; <span class="comment">//旋转 </span></span><br><span class="line">	ld x_ = x * <span class="built_in">cos</span>(sita) - y * <span class="built_in">sin</span>(sita);</span><br><span class="line">	ld y_ = y * <span class="built_in">cos</span>(sita) + x * <span class="built_in">sin</span>(sita);</span><br><span class="line">	x = x_; y = y_;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp</span><span class="params">(node a, node b)</span> </span>&#123;</span><br><span class="line">	ld A = <span class="built_in">atan2</span>(a.y - p[<span class="number">1</span>].y, a.x - p[<span class="number">1</span>].x);</span><br><span class="line">	ld B = <span class="built_in">atan2</span>(b.y - p[<span class="number">1</span>].y, b.x - p[<span class="number">1</span>].x);</span><br><span class="line">	<span class="keyword">if</span> (A != B) <span class="keyword">return</span> A &lt; B;</span><br><span class="line">	<span class="keyword">return</span> a.x &lt; b.x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cross</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> z)</span> </span>&#123;</span><br><span class="line">	ld x1 = p[y].x - p[x].x, y1 = p[y].y - p[x].y;</span><br><span class="line">	ld x2 = p[z].x - p[x].x, y2 = p[z].y - p[x].y;</span><br><span class="line">	<span class="keyword">if</span> (x1 * y2 - x2 * y1 &gt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ld <span class="title">dist</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">sqrt</span>((p[x].x - p[y].x) * (p[x].x - p[y].x) + (p[x].y - p[y].y) * (p[x].y - p[y].y));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%Lf %Lf %Lf"</span>, &amp;h, &amp;l, &amp;r);</span><br><span class="line">	l /= <span class="number">2</span>; h /= <span class="number">2</span>;</span><br><span class="line">	  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++ i) &#123;</span><br><span class="line">	  	ld x, y, sita, tmx, tmy;</span><br><span class="line">	  	<span class="built_in">scanf</span>(<span class="string">"%Lf %Lf %Lf"</span>, &amp;x, &amp;y, &amp;sita);</span><br><span class="line">	  	tmx = r - l; tmy = h - r; <span class="comment">//加入四个点 </span></span><br><span class="line">	  	rotate(tmx, tmy, sita);</span><br><span class="line">	  	p[++ tot] = (node)&#123;tmx + x, tmy + y&#125;;</span><br><span class="line">	  	tmx = r - l; tmy = r - h;</span><br><span class="line">	  	rotate(tmx, tmy, sita);</span><br><span class="line">	  	p[++ tot] = (node)&#123;tmx + x, tmy + y&#125;;</span><br><span class="line">	  	tmx = l - r; tmy = h - r;</span><br><span class="line">	  	rotate(tmx, tmy, sita);</span><br><span class="line">	  	p[++ tot] = (node)&#123;tmx + x, tmy + y&#125;;</span><br><span class="line">	  	tmx = l - r; tmy = r - h;</span><br><span class="line">	  	rotate(tmx, tmy, sita);</span><br><span class="line">	  	p[++ tot] = (node)&#123;tmx + x, tmy + y&#125;;</span><br><span class="line">	  &#125;</span><br><span class="line">	<span class="keyword">int</span> id = <span class="number">0</span>; p[<span class="number">0</span>].y = <span class="number">2e9</span>;</span><br><span class="line">	  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= tot; ++ i) &#123;</span><br><span class="line">	  	<span class="keyword">if</span> (p[i].y &lt; p[id].y) id = i;</span><br><span class="line">	  &#125;</span><br><span class="line">	swap(p[id], p[<span class="number">1</span>]);</span><br><span class="line">	sort(p + <span class="number">2</span>, p + tot + <span class="number">1</span>, cmp);</span><br><span class="line">	st[++ top] = <span class="number">1</span>; st[++ top] = <span class="number">2</span>;</span><br><span class="line">	  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= tot; ++ i) &#123; <span class="comment">//凸包 </span></span><br><span class="line">	  	<span class="keyword">if</span> (p[i].x == p[st[top]].x &amp;&amp; p[i].y == p[st[top]].y) <span class="keyword">continue</span>;</span><br><span class="line">	  	<span class="keyword">while</span> (cross(st[top - <span class="number">1</span>], i, st[top])) top --;</span><br><span class="line">	  	st[++ top] = i;</span><br><span class="line">	  &#125;</span><br><span class="line">	  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= top; ++ i) ans += dist(st[i - <span class="number">1</span>], st[i]);</span><br><span class="line">	ans += dist(st[<span class="number">1</span>], st[top]);</span><br><span class="line">	ans += pi * r * <span class="number">2</span>; <span class="comment">//加上一个圆周长 </span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%.2Lf"</span>, ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2019/04/14/[bzoj2829]信用卡凸包/">[bzoj2829]信用卡凸包</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Gax 的个人博客">Gax</a></p>
+  <p><span>发布时间:</span>2019年04月14日 - 11:02</p>
+  <p><span>最后更新:</span>2019年04月14日 - 11:26</p>
+  <p><span>原始链接:</span><a href="/2019/04/14/[bzoj2829]信用卡凸包/" title="[bzoj2829]信用卡凸包">https://gax-c.github.io/2019/04/14/[bzoj2829]信用卡凸包/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://gax-c.github.io/2019/04/14/[bzoj2829]信用卡凸包/" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+	});
+    });  
+</script>
 
       
     </div>
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/bzoj/" rel="tag"><i class="fa fa-tag"></i> bzoj</a>
+          
+            <a href="/tags/凸包/" rel="tag"><i class="fa fa-tag"></i> 凸包</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/06/[bzoj1054]移动玩具/" rel="next" title="[bzoj1054]移动玩具">
+                <i class="fa fa-chevron-left"></i> [bzoj1054]移动玩具
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -332,6 +495,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -561,6 +728,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
