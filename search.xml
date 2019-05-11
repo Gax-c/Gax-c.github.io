@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[bzoj1303]中位数图]]></title>
+    <url>%2F2019%2F05%2F11%2F%5Bbzoj1303%5D%E4%B8%AD%E4%BD%8D%E6%95%B0%E5%9B%BE%2F</url>
+    <content type="text"><![CDATA[原题链接 题目描述：给出1~n的一个排列，统计该排列有多少个长度为奇数的连续子序列的中位数是b。中位数是指把所有元素从小到大排列后，位于中间的数。 输入格式：第一行为两个正整数n和b ，第二行为1~n 的排列。 输出格式：输出一个整数，即中位数为b的连续子序列个数。输入样例：7 45 7 2 4 3 1 6 输出样例：4 解析： 简单的一道题。&emsp;&emsp;&emsp;将比b小的数变为-1，比b大的数变为1，等于b的数变为0.&emsp;&emsp;&emsp;若b的位置为ind.&emsp;&emsp;&emsp;设ind左边的sum[i]表示i到ind的和，右边的sum[i]表示ind到n的和。&emsp;&emsp;&emsp;同时左右两边分别用一个桶记录下和的个数。&emsp;&emsp;&emsp;最后和互为相反数的相乘即可。 代码如下：1234567891011121314151617181920212223242526272829303132333435#include&lt;cstdio&gt;#define rint register intusing namespace std;const int maxn = 1e5 + 5;int n, b, a[maxn], ind, ans;int sum[maxn], ls[maxn * 2], rs[maxn * 2];int read(void) &#123; char c; while (c = getchar(), c &lt; '0' || c &gt;'9'); int x = c - '0'; while (c = getchar(), c &gt;= '0' &amp;&amp; c &lt;= '9') x = x * 10 + c - '0'; return x;&#125;int main() &#123; n = read(); b = read(); rint i, j; for (i = 1; i &lt;= n; ++ i) &#123; a[i] = read(); if (a[i] &lt; b) a[i] = -1; else if (a[i] == b) a[i] = 0, ind = i; else a[i] = 1; &#125; for (i = ind - 1; i ; -- i) &#123; sum[i] = sum[i + 1] + a[i]; ls[sum[i] + n] ++; &#125; for (i = ind + 1; i &lt;= n; ++ i) &#123; sum[i] = sum[i - 1] + a[i]; rs[sum[i] + n] ++; &#125; ls[n] ++; rs[n] ++; for (i = -n; i &lt;= n; ++ i) ans += ls[i + n] * rs[-i + n]; printf("%d", ans); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>bzoj</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[bzoj1057]棋盘制作]]></title>
     <url>%2F2019%2F05%2F11%2F%5Bbzoj1057%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C%2F</url>
     <content type="text"><![CDATA[原题链接 题目描述：国际象棋是世界上最古老的博弈游戏之一，和中国的围棋、象棋以及日本的将棋同享盛名。据说国际象棋起源于易经的思想，棋盘是一个88大小的黑白相间的方阵，对应八八六十四卦，黑白对应阴阳。而我们的主人公小Q，正是国际象棋的狂热爱好者。作为一个顶尖高手，他已不满足于普通的棋盘与规则，于是他跟他的好朋友小W决定将棋盘扩大以适应他们的新规则。小Q找到了一张由NM个正方形的格子组成的矩形纸片，每个格子被涂有黑白两种颜色之一。小Q想在这种纸中裁减一部分作为新棋盘，当然，他希望这个棋盘尽可能的大。不过小Q还没有决定是找一个正方形的棋盘还是一个矩形的棋盘（当然，不管哪种，棋盘必须都黑白相间，即相邻的格子不同色），所以他希望可以找到最大的正方形棋盘面积和最大的矩形棋盘面积，从而决定哪个更好一些。于是小Q找到了即将参加全国信息学竞赛的你，你能帮助他么？ 输入格式：第一行包含两个整数N和M，分别表示矩形纸片的长和宽。接下来的N行包含一个N M的01矩阵，表示这张矩形纸片的颜色（0表示白色，1表示黑色）。*输出格式：包含两行，每行包含一个整数。第一行为可以找到的最大正方形棋盘的面积，第二行为可以找到的最大矩形棋盘的面积（注意正方形和矩形是可以相交或者包含的）。 输入样例：3 31 0 10 1 01 0 0 输出样例：46 解析：题目要求求出01相间矩阵的最大面积。&emsp;&emsp;&emsp;那么很显然可以先递推求出每个点向左、右、上所能延续的长度。&emsp;&emsp;&emsp;对于每个点，可以用单调栈求出它所能形成的最大子矩形。&emsp;&emsp;&emsp;最后比较一下，取出满足要求的最大的矩形即可。 代码如下：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566#include&lt;cstdio&gt;#include&lt;algorithm&gt;using namespace std;const int maxn = 2005;int n, m, a[maxn][maxn], ansx, ansy;int lf[maxn][maxn], rt[maxn][maxn], up[maxn][maxn], L[maxn][maxn], R[maxn][maxn];int st[maxn], top;int read(void) &#123; char c; while (c = getchar(), c &lt; '0' || c &gt;'9'); int x = c - '0'; while (c = getchar(), c &gt;= '0' &amp;&amp; c &lt;= '9') x = x * 10 + c - '0'; return x;&#125;int main() &#123; n = read(); m = read(); for (int i = 1; i &lt;= n; ++ i) for (int j = 1; j &lt;= m; ++ j) &#123; a[i][j] = read(); lf[i][j] = rt[i][j] = up[i][j] = 1; &#125; for (int i = 1; i &lt;= n; ++ i) &#123; //递推求出向三个方向所能扩展的长度 for (int j = 1; j &lt;= m; ++ j) &#123; if (a[i][j] != a[i][j - 1]) lf[i][j] = lf[i][j - 1] + 1; if (a[i][j] != a[i - 1][j]) up[i][j] = up[i - 1][j] + 1; &#125; for (int j = m - 1; j ; -- j) if (a[i][j] != a[i][j + 1]) rt[i][j] = rt[i][j + 1] + 1; &#125; for (int i = 1; i &lt;= n; ++ i) &#123; //单调栈求出向右能扩展的长度 top = 0; for (int j = 1; j &lt;= m; ++ j) &#123; while (up[i][j] &lt; up[i][st[top]]) &#123; R[i][st[top]] = j - st[top] - 1; -- top; &#125; st[++ top] = j; &#125; while (top &gt; 0) &#123; R[i][st[top]] = m - st[top]; -- top; &#125; &#125; for (int i = 1; i &lt;= n; ++ i) &#123; //求出向左能扩展的长度 top = 0; for (int j = m; j ; -- j) &#123; while (up[i][j] &lt; up[i][st[top]]) &#123; L[i][st[top]] = st[top] - j - 1; -- top; &#125; st[++ top] = j; &#125; while (top &gt; 0) &#123; L[i][st[top]] = st[top] - 1; -- top; &#125; &#125; for (int i = 1; i &lt;= n; ++ i) //求助最大的正方形和矩形 for (int j = 1; j &lt;= m; ++ j) &#123; int x = min(lf[i][j], L[i][j] + 1), y = min(rt[i][j], R[i][j] + 1); ansx = max(ansx, min(x + y - 1, up[i][j]) * min(x + y - 1, up[i][j])); ansy = max(ansy, (x + y - 1) * up[i][j]); &#125; printf("%d\n%d", ansx, ansy); return 0;&#125;]]></content>
@@ -8,6 +19,7 @@
         <category>OI</category>
       </categories>
       <tags>
+        <tag>bzoj</tag>
         <tag>单调栈</tag>
       </tags>
   </entry>
