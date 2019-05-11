@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[bzoj1057]棋盘制作]]></title>
+    <url>%2F2019%2F05%2F11%2F%5Bbzoj1057%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[原题链接 题目描述：国际象棋是世界上最古老的博弈游戏之一，和中国的围棋、象棋以及日本的将棋同享盛名。据说国际象棋起源于易经的思想，棋盘是一个88大小的黑白相间的方阵，对应八八六十四卦，黑白对应阴阳。而我们的主人公小Q，正是国际象棋的狂热爱好者。作为一个顶尖高手，他已不满足于普通的棋盘与规则，于是他跟他的好朋友小W决定将棋盘扩大以适应他们的新规则。小Q找到了一张由NM个正方形的格子组成的矩形纸片，每个格子被涂有黑白两种颜色之一。小Q想在这种纸中裁减一部分作为新棋盘，当然，他希望这个棋盘尽可能的大。不过小Q还没有决定是找一个正方形的棋盘还是一个矩形的棋盘（当然，不管哪种，棋盘必须都黑白相间，即相邻的格子不同色），所以他希望可以找到最大的正方形棋盘面积和最大的矩形棋盘面积，从而决定哪个更好一些。于是小Q找到了即将参加全国信息学竞赛的你，你能帮助他么？ 输入格式：第一行包含两个整数N和M，分别表示矩形纸片的长和宽。接下来的N行包含一个N M的01矩阵，表示这张矩形纸片的颜色（0表示白色，1表示黑色）。*输出格式：包含两行，每行包含一个整数。第一行为可以找到的最大正方形棋盘的面积，第二行为可以找到的最大矩形棋盘的面积（注意正方形和矩形是可以相交或者包含的）。 输入样例：3 31 0 10 1 01 0 0 输出样例：46 解析：题目要求求出01相间矩阵的最大面积。&emsp;&emsp;&emsp;那么很显然可以先递推求出每个点向左、右、上所能延续的长度。&emsp;&emsp;&emsp;对于每个点，可以用单调栈求出它所能形成的最大子矩形。&emsp;&emsp;&emsp;最后比较一下，取出满足要求的最大的矩形即可。 代码如下：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566#include&lt;cstdio&gt;#include&lt;algorithm&gt;using namespace std;const int maxn = 2005;int n, m, a[maxn][maxn], ansx, ansy;int lf[maxn][maxn], rt[maxn][maxn], up[maxn][maxn], L[maxn][maxn], R[maxn][maxn];int st[maxn], top;int read(void) &#123; char c; while (c = getchar(), c &lt; '0' || c &gt;'9'); int x = c - '0'; while (c = getchar(), c &gt;= '0' &amp;&amp; c &lt;= '9') x = x * 10 + c - '0'; return x;&#125;int main() &#123; n = read(); m = read(); for (int i = 1; i &lt;= n; ++ i) for (int j = 1; j &lt;= m; ++ j) &#123; a[i][j] = read(); lf[i][j] = rt[i][j] = up[i][j] = 1; &#125; for (int i = 1; i &lt;= n; ++ i) &#123; //递推求出向三个方向所能扩展的长度 for (int j = 1; j &lt;= m; ++ j) &#123; if (a[i][j] != a[i][j - 1]) lf[i][j] = lf[i][j - 1] + 1; if (a[i][j] != a[i - 1][j]) up[i][j] = up[i - 1][j] + 1; &#125; for (int j = m - 1; j ; -- j) if (a[i][j] != a[i][j + 1]) rt[i][j] = rt[i][j + 1] + 1; &#125; for (int i = 1; i &lt;= n; ++ i) &#123; //单调栈求出向右能扩展的长度 top = 0; for (int j = 1; j &lt;= m; ++ j) &#123; while (up[i][j] &lt; up[i][st[top]]) &#123; R[i][st[top]] = j - st[top] - 1; -- top; &#125; st[++ top] = j; &#125; while (top &gt; 0) &#123; R[i][st[top]] = m - st[top]; -- top; &#125; &#125; for (int i = 1; i &lt;= n; ++ i) &#123; //求出向左能扩展的长度 top = 0; for (int j = m; j ; -- j) &#123; while (up[i][j] &lt; up[i][st[top]]) &#123; L[i][st[top]] = st[top] - j - 1; -- top; &#125; st[++ top] = j; &#125; while (top &gt; 0) &#123; L[i][st[top]] = st[top] - 1; -- top; &#125; &#125; for (int i = 1; i &lt;= n; ++ i) //求助最大的正方形和矩形 for (int j = 1; j &lt;= m; ++ j) &#123; int x = min(lf[i][j], L[i][j] + 1), y = min(rt[i][j], R[i][j] + 1); ansx = max(ansx, min(x + y - 1, up[i][j]) * min(x + y - 1, up[i][j])); ansy = max(ansy, (x + y - 1) * up[i][j]); &#125; printf("%d\n%d", ansx, ansy); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>单调栈</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[bzoj2829]信用卡凸包]]></title>
     <url>%2F2019%2F04%2F14%2F%5Bbzoj2829%5D%E4%BF%A1%E7%94%A8%E5%8D%A1%E5%87%B8%E5%8C%85%2F</url>
     <content type="text"><![CDATA[原题链接没有bzoj权限的话可以去洛谷 题目描述：信用卡是一个矩形，唯四个角作了圆滑处理，使它们都是与矩形的两边相切的 1/4 圆，如下图所示。现在平面上有一些规格相同的信用卡，试求其凸包的周长。注意凸包未必是多边形，因为它可能包含若干段圆弧。 输入格式：输入的第一行是一个正整数 n，表示信用卡的张数。第二行包含三个实数 a, b, r，分别表示信用卡（圆滑处理前）竖直方向的长度、水平方向的长度，以及 1/4 圆的半径。之后 n 行，每行包含三个实数 x, y, θ，分别表示一张信用卡中心（即对角线交点）的横、纵坐标，以及绕中心 逆时针旋转的弧度。输出格式：输出只有一行，包含一个实数，表示凸包的周长，四舍五入精确到小数点后2 位。 输入样例：36.0 6.0 1.04.0 4.0 0.17453292520.0 8.0 0.34906585040.0 0.0 0.5235987756 输出样例：41.63 解析：乍一眼看上去毫无头绪，圆滑处理什么的根本看不懂。&emsp;&emsp;&emsp;但仔细观察后就会发现，要覆盖所有的信用卡，凸包所选的点肯定在每个信用卡的边缘。&emsp;&emsp;&emsp;对于r=0的情况，很容易发现就是将每张信用卡的四个顶点放入点集中做一次凸包。&emsp;&emsp;&emsp;对于r≠0的情况，就将则将圆滑处理过的信用卡的顶点的圆心放入点集中做凸包。&emsp;&emsp;&emsp;可是这样周长肯定会偏小啊。没关系，最后再将答案加上一个2πr即可。&emsp;&emsp;&emsp;为什么是这样的呢，可以自己手玩一下样例，也可以自己证明一下。 代码如下：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576#include&lt;cstdio&gt;#include&lt;cmath&gt;#include&lt;algorithm&gt;#define ld long doubleusing namespace std;const ld pi = acos(-1);const int maxn = 80005;int n, tot, st[maxn], top;ld l, h, r, ans;struct node&#123; ld x, y;&#125;p[maxn];void rotate(ld &amp;x, ld &amp;y, ld &amp;sita) &#123; //旋转 ld x_ = x * cos(sita) - y * sin(sita); ld y_ = y * cos(sita) + x * sin(sita); x = x_; y = y_;&#125;int cmp(node a, node b) &#123; ld A = atan2(a.y - p[1].y, a.x - p[1].x); ld B = atan2(b.y - p[1].y, b.x - p[1].x); if (A != B) return A &lt; B; return a.x &lt; b.x;&#125;int cross(int x, int y, int z) &#123; ld x1 = p[y].x - p[x].x, y1 = p[y].y - p[x].y; ld x2 = p[z].x - p[x].x, y2 = p[z].y - p[x].y; if (x1 * y2 - x2 * y1 &gt; 0) return 1; return 0;&#125;ld dist(int x, int y) &#123; return sqrt((p[x].x - p[y].x) * (p[x].x - p[y].x) + (p[x].y - p[y].y) * (p[x].y - p[y].y));&#125;int main() &#123; scanf("%d", &amp;n); scanf("%Lf %Lf %Lf", &amp;h, &amp;l, &amp;r); l /= 2; h /= 2; for (int i = 1; i &lt;= n; ++ i) &#123; ld x, y, sita, tmx, tmy; scanf("%Lf %Lf %Lf", &amp;x, &amp;y, &amp;sita); tmx = r - l; tmy = h - r; //加入四个点 rotate(tmx, tmy, sita); p[++ tot] = (node)&#123;tmx + x, tmy + y&#125;; tmx = r - l; tmy = r - h; rotate(tmx, tmy, sita); p[++ tot] = (node)&#123;tmx + x, tmy + y&#125;; tmx = l - r; tmy = h - r; rotate(tmx, tmy, sita); p[++ tot] = (node)&#123;tmx + x, tmy + y&#125;; tmx = l - r; tmy = r - h; rotate(tmx, tmy, sita); p[++ tot] = (node)&#123;tmx + x, tmy + y&#125;; &#125; int id = 0; p[0].y = 2e9; for (int i = 1; i &lt;= tot; ++ i) &#123; if (p[i].y &lt; p[id].y) id = i; &#125; swap(p[id], p[1]); sort(p + 2, p + tot + 1, cmp); st[++ top] = 1; st[++ top] = 2; for (int i = 3; i &lt;= tot; ++ i) &#123; //凸包 if (p[i].x == p[st[top]].x &amp;&amp; p[i].y == p[st[top]].y) continue; while (cross(st[top - 1], i, st[top])) top --; st[++ top] = i; &#125; for (int i = 2; i &lt;= top; ++ i) ans += dist(st[i - 1], st[i]); ans += dist(st[1], st[top]); ans += pi * r * 2; //加上一个圆周长 printf("%.2Lf", ans); return 0;&#125;]]></content>
@@ -107,9 +118,9 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>CF</tag>
         <tag>思维</tag>
         <tag>构造</tag>
+        <tag>CF</tag>
       </tags>
   </entry>
   <entry>
@@ -155,8 +166,8 @@
       </categories>
       <tags>
         <tag>思维</tag>
-        <tag>hdu</tag>
         <tag>数学</tag>
+        <tag>hdu</tag>
       </tags>
   </entry>
   <entry>
@@ -168,8 +179,8 @@
       </categories>
       <tags>
         <tag>思维</tag>
-        <tag>two pointers</tag>
         <tag>hdu</tag>
+        <tag>two pointers</tag>
       </tags>
   </entry>
   <entry>
