@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="贪心,bzoj,DP,">
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="既然不能改变自己，那就改变世界">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Gax&#39;s blog">
-<meta property="og:url" content="https://gax-c.github.io/tags/前缀和/index.html">
+<meta name="description" content="原题链接 题目描述：上午的训练结束了，THU ACM小组集体去吃午餐，他们一行N人来到了著名的十食堂。这里有两个打饭的窗口，每个窗口同一时刻只能给一个人打饭。由于每个人的口味（以及胃口）不同，所以他们要吃的菜各有不同，打饭所要花费的时间是因人而异的。另外每个人吃饭的速度也不尽相同，所以吃饭花费的时间也是可能有所不同的。 THU ACM小组的吃饭计划是这样的：先把所有的人分成两队，并安排好每队中各人">
+<meta name="keywords" content="贪心,bzoj,DP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[bzoj1899]Lunch午餐">
+<meta property="og:url" content="https://gax-c.github.io/2019/05/12/[bzoj1899]Lunch午餐/index.html">
 <meta property="og:site_name" content="Gax&#39;s blog">
-<meta property="og:description" content="既然不能改变自己，那就改变世界">
+<meta property="og:description" content="原题链接 题目描述：上午的训练结束了，THU ACM小组集体去吃午餐，他们一行N人来到了著名的十食堂。这里有两个打饭的窗口，每个窗口同一时刻只能给一个人打饭。由于每个人的口味（以及胃口）不同，所以他们要吃的菜各有不同，打饭所要花费的时间是因人而异的。另外每个人吃饭的速度也不尽相同，所以吃饭花费的时间也是可能有所不同的。 THU ACM小组的吃饭计划是这样的：先把所有的人分成两队，并安排好每队中各人">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-12T00:56:07.936Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Gax&#39;s blog">
-<meta name="twitter:description" content="既然不能改变自己，那就改变世界">
+<meta name="twitter:title" content="[bzoj1899]Lunch午餐">
+<meta name="twitter:description" content="原题链接 题目描述：上午的训练结束了，THU ACM小组集体去吃午餐，他们一行N人来到了著名的十食堂。这里有两个打饭的窗口，每个窗口同一时刻只能给一个人打饭。由于每个人的口味（以及胃口）不同，所以他们要吃的菜各有不同，打饭所要花费的时间是因人而异的。另外每个人吃饭的速度也不尽相同，所以吃饭花费的时间也是可能有所不同的。 THU ACM小组的吃饭计划是这样的：先把所有的人分成两队，并安排好每队中各人">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://gax-c.github.io/tags/前缀和/">
+  <link rel="canonical" href="https://gax-c.github.io/2019/05/12/[bzoj1899]Lunch午餐/">
 
 
 
 
 
-  <title>标签: 前缀和 | Gax's blog</title>
+  <title>[bzoj1899]Lunch午餐 | Gax's blog</title>
   
 
 
@@ -143,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -279,52 +281,214 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>前缀和<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gax-c.github.io/2019/05/12/[bzoj1899]Lunch午餐/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gax">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gax's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/03/09/[CF1132C]Painting the Fence/" itemprop="url">
-              
-                <span itemprop="name">[CF1132C]Painting the Fence</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">[bzoj1899]Lunch午餐</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-09T22:05:12+08:00" content="2019-03-09">
-          03-09
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-12T08:54:12+08:00">
+                2019-05-12
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OI/" itemprop="url" rel="index">
+                    <span itemprop="name">OI</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=1899" target="_blank" rel="noopener">原题链接</a></p>
+<p><strong>题目描述</strong>：上午的训练结束了，THU ACM小组集体去吃午餐，他们一行N人来到了著名的十食堂。这里有两个打饭的窗口，每个窗口同一时刻只能给一个人打饭。由于每个人的口味（以及胃口）不同，所以他们要吃的菜各有不同，打饭所要花费的时间是因人而异的。另外每个人吃饭的速度也不尽相同，所以吃饭花费的时间也是可能有所不同的。 THU ACM小组的吃饭计划是这样的：先把所有的人分成两队，并安排好每队中各人的排列顺序，然后一号队伍到一号窗口去排队打饭，二号队伍到二号窗口去排队打饭。每个人打完饭后立刻开始吃，所有人都吃完饭后立刻集合去六教地下室进行下午的训练。 现在给定了每个人的打饭时间和吃饭时间，要求安排一种最佳的分队和排队方案使得所有人都吃完饭的时间尽量早。 假设THU ACM小组在时刻0到达十食堂，而且食堂里面没有其他吃饭的同学（只有打饭的师傅）。每个人必须而且只能被分在一个队伍里。两个窗口是并行操作互不影响的，而且每个人打饭的时间是和窗口无关的，打完饭之后立刻就开始吃饭，中间没有延迟。 现在给定N个人各自的打饭时间和吃饭时间，要求输出最佳方案下所有人吃完饭的时刻。<br><a id="more"></a><br><strong>输入格式</strong>：第一行一个整数N，代表总共有N个人。 以下N行，每行两个整数 Ai，Bi。依次代表第i个人的打饭时间和吃饭时间。</p>
+<p><strong>输出格式</strong>:一个整数T，代表所有人吃完饭的最早时刻。</p>
+<p><strong>样例输入</strong>：<br>5<br>2 2<br>7 7<br>1 3<br>6 4<br>8 5</p>
+<p><strong>样例输出</strong>：<br>17</p>
+<p><strong>解析</strong>：第一眼看到一点思路都没有。<br>&emsp;&emsp;&emsp;似乎和johnson有点像，但要分成两队，难以下手。<br>&emsp;&emsp;&emsp;贪心不知道怎么贪，DP也感觉有点不对劲。<br>&emsp;&emsp;&emsp;最后看看题解才发现是贪心+DP（果然我还是菜…）<br>&emsp;&emsp;&emsp;首先贪心地按吃饭时间的顺序从大到小排序，再进行DP。<br>&emsp;&emsp;&emsp;设dp[i][j]表示前i个人，第一队排队花的时间是j的最小花费时间。<br>&emsp;&emsp;&emsp;那么显然第二队的时间可以用sum[i]-j来表示。<br>&emsp;&emsp;&emsp;这样，枚举每个人的队伍即可。</p>
+<p>代码如下<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">205</span>;</span><br><span class="line"><span class="keyword">int</span> n, dp[maxn][maxn * maxn], sum[maxn], ans;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> x, y;</span><br><span class="line">&#125;a[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">char</span> c; <span class="keyword">while</span> (c = getchar(), c &lt; <span class="string">'0'</span> || c &gt;<span class="string">'9'</span>); <span class="keyword">int</span> x = c - <span class="string">'0'</span>;</span><br><span class="line">	<span class="keyword">while</span> (c = getchar(), c &gt;= <span class="string">'0'</span> &amp;&amp; c &lt;= <span class="string">'9'</span>) x = x * <span class="number">10</span> + c - <span class="string">'0'</span>; <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp</span><span class="params">(node a, node b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a.y &gt; b.y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	n = read();</span><br><span class="line">	  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++ i) &#123;</span><br><span class="line">	  	a[i].x = read(); a[i].y = read();</span><br><span class="line">	  &#125;</span><br><span class="line">	sort(a + <span class="number">1</span>, a + <span class="number">1</span> + n, cmp);</span><br><span class="line">	  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++ i) sum[i] = sum[i - <span class="number">1</span>] + a[i].x;</span><br><span class="line">	<span class="built_in">memset</span>(dp, <span class="number">0x3f</span>, <span class="keyword">sizeof</span>(dp));</span><br><span class="line">	dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">	  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++ i) </span><br><span class="line">	    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= sum[i]; ++ j) &#123;</span><br><span class="line">	      <span class="keyword">if</span> (j &gt;= a[i].x) dp[i][j] = min(dp[i][j], max(dp[i - <span class="number">1</span>][j - a[i].x], j + a[i].y));</span><br><span class="line">	      dp[i][j] = min(dp[i][j], max(dp[i - <span class="number">1</span>][j], sum[i] - j + a[i].y));</span><br><span class="line">		&#125;</span><br><span class="line">	ans = <span class="number">2e9</span>;</span><br><span class="line">	  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= sum[n]; ++ i) ans = min(ans, dp[n][i]);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>, ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2019/05/12/[bzoj1899]Lunch午餐/">[bzoj1899]Lunch午餐</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Gax 的个人博客">Gax</a></p>
+  <p><span>发布时间:</span>2019年05月12日 - 08:54</p>
+  <p><span>最后更新:</span>2019年05月12日 - 08:56</p>
+  <p><span>原始链接:</span><a href="/2019/05/12/[bzoj1899]Lunch午餐/" title="[bzoj1899]Lunch午餐">https://gax-c.github.io/2019/05/12/[bzoj1899]Lunch午餐/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://gax-c.github.io/2019/05/12/[bzoj1899]Lunch午餐/" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+	});
+    });  
+</script>
 
       
     </div>
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/贪心/" rel="tag"><i class="fa fa-tag"></i> 贪心</a>
+          
+            <a href="/tags/bzoj/" rel="tag"><i class="fa fa-tag"></i> bzoj</a>
+          
+            <a href="/tags/DP/" rel="tag"><i class="fa fa-tag"></i> DP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/12/bzoj[1801]chess中国象棋/" rel="next" title="bzoj[1801]chess中国象棋">
+                <i class="fa fa-chevron-left"></i> bzoj[1801]chess中国象棋
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -332,6 +496,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -561,6 +729,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
