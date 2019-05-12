@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[bzoj3155]Preprefix sum]]></title>
+    <url>%2F2019%2F05%2F12%2F%5Bbzoj3155%5DPreprefix%20sum%2F</url>
+    <content type="text"><![CDATA[原题链接 题目描述： 输入格式：第一行给出两个整数N，M。分别表示序列长度和操作个数接下来一行有N个数，即给定的序列a1,a2,….an接下来M行，每行对应一个操作，格式见题目描述 输出格式：对于每个询问操作，输出一行，表示所询问的SSi的值。输入样例：5 31 2 3 4 5Query 5Modify 3 2Query 5 输出样例：3532 解析：题目要求求前缀和的前缀和。&emsp;&emsp;&emsp;可以用树状数组进行维护。&emsp;&emsp;&emsp;$s_1 = 1\times a_1$&emsp;&emsp;&emsp;$s_2 = 1\times a_1 + 1\times a_2$&emsp;&emsp;&emsp;$s_3 = 1\times a_1 + 1\times a_2 + 1\times a_3$&emsp;&emsp;&emsp;$s_n = 1\times a_1 + 1\times a_2 + 1\times a_3 + … 1\times a_n$&emsp;&emsp;&emsp;$ss_1 = 1\times a_1$&emsp;&emsp;&emsp;$ss_2 = 2\times a_1 + 1\times a_2$&emsp;&emsp;&emsp;$ss_3 = 3\times a_1 + 2\times a_2 + 1\times a_3$&emsp;&emsp;&emsp;可以发现ss的数有着明显的规律。&emsp;&emsp;&emsp;那么设$x_i = (i - 1)s_i,$&emsp;&emsp;&emsp;设$y_i = x\times s_i$其中x为数列的长度(即1~i中数的个数)。&emsp;&emsp;&emsp;可得$ss_i = y_i - x_i$&emsp;&emsp;&emsp;所以用树状数组维护$s_i,x_i$即可。 代码如下：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869#include&lt;cstdio&gt;#define int long longusing namespace std;const int maxn = 1e5 + 5;int n, m, a[maxn];int sum1[maxn], sum2[maxn];char s[10];int read(void) &#123; char c; while (c = getchar(), c &lt; '0' || c &gt;'9'); int x = c - '0'; while (c = getchar(), c &gt;= '0' &amp;&amp; c &lt;= '9') x = x * 10 + c - '0'; return x;&#125;void modify1(int x, int c) &#123; while (x &lt;= n) &#123; sum1[x] += c; x += x &amp; -x; &#125;&#125;void modify2(int x, int c) &#123; while (x &lt;= n) &#123; sum2[x] += c; x += x &amp; -x; &#125;&#125;int query1(int x) &#123; int ans = 0; while (x &gt; 0) &#123; ans += sum1[x]; x -= x &amp; -x; &#125; return ans;&#125;int query2(int x) &#123; int ans = 0; while (x &gt; 0) &#123; ans += sum2[x]; x -= x &amp; -x; &#125; return ans;&#125;signed main() &#123; n = read(); m = read(); for (int i = 1; i &lt;= n; ++ i) &#123; a[i] = read(); modify1(i, a[i]); modify2(i, (i - 1) * a[i]); &#125; while (m --) &#123; scanf("%s", s + 1); if (s[1] == 'Q') &#123; int x = read(); printf("%lld\n", x * query1(x) - query2(x)); &#125; else &#123; int x = read(), y = read(); int add = y - a[x]; a[x] = y; modify1(x, add); modify2(x, (x - 1) * add); &#125; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>bzoj</tag>
+        <tag>树状数组</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[bzoj1899]Lunch午餐]]></title>
     <url>%2F2019%2F05%2F12%2F%5Bbzoj1899%5DLunch%E5%8D%88%E9%A4%90%2F</url>
     <content type="text"><![CDATA[原题链接 题目描述：上午的训练结束了，THU ACM小组集体去吃午餐，他们一行N人来到了著名的十食堂。这里有两个打饭的窗口，每个窗口同一时刻只能给一个人打饭。由于每个人的口味（以及胃口）不同，所以他们要吃的菜各有不同，打饭所要花费的时间是因人而异的。另外每个人吃饭的速度也不尽相同，所以吃饭花费的时间也是可能有所不同的。 THU ACM小组的吃饭计划是这样的：先把所有的人分成两队，并安排好每队中各人的排列顺序，然后一号队伍到一号窗口去排队打饭，二号队伍到二号窗口去排队打饭。每个人打完饭后立刻开始吃，所有人都吃完饭后立刻集合去六教地下室进行下午的训练。 现在给定了每个人的打饭时间和吃饭时间，要求安排一种最佳的分队和排队方案使得所有人都吃完饭的时间尽量早。 假设THU ACM小组在时刻0到达十食堂，而且食堂里面没有其他吃饭的同学（只有打饭的师傅）。每个人必须而且只能被分在一个队伍里。两个窗口是并行操作互不影响的，而且每个人打饭的时间是和窗口无关的，打完饭之后立刻就开始吃饭，中间没有延迟。 现在给定N个人各自的打饭时间和吃饭时间，要求输出最佳方案下所有人吃完饭的时刻。输入格式：第一行一个整数N，代表总共有N个人。 以下N行，每行两个整数 Ai，Bi。依次代表第i个人的打饭时间和吃饭时间。 输出格式:一个整数T，代表所有人吃完饭的最早时刻。 样例输入：52 27 71 36 48 5 样例输出：17 解析：第一眼看到一点思路都没有。&emsp;&emsp;&emsp;似乎和johnson有点像，但要分成两队，难以下手。&emsp;&emsp;&emsp;贪心不知道怎么贪，DP也感觉有点不对劲。&emsp;&emsp;&emsp;最后看看题解才发现是贪心+DP（果然我还是菜…）&emsp;&emsp;&emsp;首先贪心地按吃饭时间的顺序从大到小排序，再进行DP。&emsp;&emsp;&emsp;设dp[i][j]表示前i个人，第一队排队花的时间是j的最小花费时间。&emsp;&emsp;&emsp;那么显然第二队的时间可以用sum[i]-j来表示。&emsp;&emsp;&emsp;这样，枚举每个人的队伍即可。 代码如下123456789101112131415161718192021222324252627282930313233343536373839#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;algorithm&gt;using namespace std;const int maxn = 205;int n, dp[maxn][maxn * maxn], sum[maxn], ans;struct node&#123; int x, y;&#125;a[maxn];int read(void) &#123; char c; while (c = getchar(), c &lt; '0' || c &gt;'9'); int x = c - '0'; while (c = getchar(), c &gt;= '0' &amp;&amp; c &lt;= '9') x = x * 10 + c - '0'; return x;&#125;int cmp(node a, node b) &#123; return a.y &gt; b.y;&#125;int main() &#123; n = read(); for (int i = 1; i &lt;= n; ++ i) &#123; a[i].x = read(); a[i].y = read(); &#125; sort(a + 1, a + 1 + n, cmp); for (int i = 1; i &lt;= n; ++ i) sum[i] = sum[i - 1] + a[i].x; memset(dp, 0x3f, sizeof(dp)); dp[0][0] = 0; for (int i = 1; i &lt;= n; ++ i) for (int j = 1; j &lt;= sum[i]; ++ j) &#123; if (j &gt;= a[i].x) dp[i][j] = min(dp[i][j], max(dp[i - 1][j - a[i].x], j + a[i].y)); dp[i][j] = min(dp[i][j], max(dp[i - 1][j], sum[i] - j + a[i].y)); &#125; ans = 2e9; for (int i = 1; i &lt;= sum[n]; ++ i) ans = min(ans, dp[n][i]); printf("%d", ans); return 0;&#125;]]></content>
@@ -155,9 +167,9 @@
         <category>OI</category>
       </categories>
       <tags>
+        <tag>CF</tag>
         <tag>思维</tag>
         <tag>构造</tag>
-        <tag>CF</tag>
       </tags>
   </entry>
   <entry>
